@@ -1,7 +1,6 @@
 public class PagoTransferencia : Pago
 {
-    private string banco;
-    public string Banco { get { return this.banco; } set { this.banco = value; } }
+    public string Banco { get; set; }
 
     public PagoTransferencia(string titular, double monto, string banco) : base(titular, monto)
     {

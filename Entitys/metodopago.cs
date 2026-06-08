@@ -1,15 +1,12 @@
 public abstract class Pago
 {
-    private string titular;
-    private double monto;
-
-    public string Titular { get {return this.titular;} set {this.titular = value;} }
-    public double Monto   { get {return this.monto;} set {this.monto = value;} }
+    public string Titular { get; set; }
+    public double Monto { get; set; }
 
     public Pago(string titular, double monto)
     {
         Titular = titular;
-        Monto   = monto;
+        Monto = monto;
     }
 
 
@@ -19,22 +16,21 @@ public abstract class Pago
 
     public void MostrarInfo()
     {
+        double comision   = CalcularComision();
+        double montoFinal = Monto + comision;
+
         Console.WriteLine($"Titular: {Titular}");
         Console.WriteLine($"Método:  {ObtenerNombreMetodo()}");
         Console.WriteLine($"Monto original: ${Monto}");
+        Console.WriteLine($"Comisión aplicada: ${comision}");
+        Console.WriteLine($"Monto final: ${montoFinal}");
     }
 
 
     public void ProcesarPago()
     {
-        MostrarInfo();
         Console.WriteLine("Procesando pago...");
-
-        double comision   = CalcularComision();
-        double montoFinal = Monto + comision;
-
-        Console.WriteLine($"Comisión aplicada: ${comision}");
-        Console.WriteLine($"Monto final: ${montoFinal}");
+        MostrarInfo();
         Console.WriteLine("Pago realizado correctamente.");
         Console.WriteLine("--------------------------------");
     }
